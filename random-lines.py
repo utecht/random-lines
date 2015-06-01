@@ -1,7 +1,7 @@
-#!/usr/bin/python
-from __future__ import print_function
+#!/usr/bin/env python
 import random
 import argparse
+import sys
 
 parser = argparse.ArgumentParser(description='Return random lines of file')
 parser.add_argument('file', type=argparse.FileType('r'), help='the input file')
@@ -24,11 +24,13 @@ if args.num:
 elif args.percent:
     lines_pulled = int(num_lines * args.percent)
 
+if args.output:
+    output = args.output
+else:
+    output = sys.stdout
+
 pull_lines = [random.randint(1, num_lines) for _ in range(lines_pulled)]
 
 for i, line in enumerate(args.file):
     if i in pull_lines:
-        if args.output:
-            args.output.write(line)
-        else:
-            print(line, end="")
+        output.write(line)
