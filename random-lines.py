@@ -26,10 +26,9 @@ elif args.percent:
 
 pull_lines = [random.randint(1, num_lines) for _ in range(lines_pulled)]
 
-with args.file as f:
-    for i, line in enumerate(f):
-        if i in pull_lines:
-            if args.output:
-                args.output.write(line)
-            else:
-                print(line, end="")
+for i, line in enumerate(args.file):
+    if i in pull_lines:
+        if args.output:
+            args.output.write(line)
+        else:
+            print(line, end="")
