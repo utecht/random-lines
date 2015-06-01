@@ -4,7 +4,7 @@ import random
 import argparse
 
 parser = argparse.ArgumentParser(description='Return random lines of file')
-parser.add_argument('file', type=file, help='the input file')
+parser.add_argument('file', type=argparse.FileType('r'), help='the input file')
 parser.add_argument('-n', '--num', type=int, help='number of lines to return')
 parser.add_argument('-p', '--percent', type=float, help='percent of lines to return, i.e. 0.1 for 10 percent')
 parser.add_argument('-o', '--output', type=argparse.FileType('w'), help='an output file')
